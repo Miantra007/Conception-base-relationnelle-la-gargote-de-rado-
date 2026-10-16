@@ -15,3 +15,13 @@ group by c.id_categorie;
 -- VALUES
 --     ('Romazava', 'Plat malagasy', 7000),
 --     ('Ravitoto sy henakisoa', 'Plat malgache', 8000);
+
+
+-- ETAPE 3
+SELECT c.daty ,sum(cp.quantite * p.prix) as montant from commande_plat as cp
+join plat as p
+on p.id_plat = cp.id_plat
+join commande as c
+on c.id_commande = cp.id_commande
+GROUP BY c.daty;
+-- je place la quantite dans commande_plat
