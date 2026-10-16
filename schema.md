@@ -11,3 +11,10 @@ plat(**id_plat**,libelle,#id_categorie(modifier),prix)
 categorie(**id_categorie**,libelle)
 commande(**id_commande**,daty)
 commande_plat(**id**,#id_plat,#id_commande,quantite)
+
+### ETAPE 4
+plat(**id_plat**,libelle,#id_categorie(modifier),prix)
+categorie(**id_categorie**,libelle)
+commande(**id_commande**,daty,#id_client?(nouveau))
+commande_plat(**id**,#id_plat,#id_commande,quantite)
+client(**id_client**,nom_client)

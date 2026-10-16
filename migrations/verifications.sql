@@ -25,3 +25,17 @@ join commande as c
 on c.id_commande = cp.id_commande
 GROUP BY c.daty;
 -- je place la quantite dans commande_plat
+
+-- ETAPE 4
+select 
+CASE 
+    WHEN cm.id_client is NULL THEN  'Client de passage'
+    ELSE c.nom_client
+END as client,
+cm.daty from commande as cm
+left join client as c
+on c.id_client = cm.id_client;
+
+-- ma cle etrangere est null car il peut y avoir des clients de passages
+-- il faut left join
+
