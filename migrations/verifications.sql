@@ -101,3 +101,4 @@ ORDER BY
 -- montant_paye dans la table commande ne suffit pas puisque le client ne poura pas beneficier des differentes mode de paiement
 -- contrainte CHECK : juste ajouter une condition dans la table paiement pour verifier les modes de paiement
 -- table reference : vraiement creer une autre table pour stocker les modes de paiement
+-- ETAPE 7
