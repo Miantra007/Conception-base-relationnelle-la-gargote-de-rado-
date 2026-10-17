@@ -101,4 +101,24 @@ ORDER BY
 -- montant_paye dans la table commande ne suffit pas puisque le client ne poura pas beneficier des differentes mode de paiement
 -- contrainte CHECK : juste ajouter une condition dans la table paiement pour verifier les modes de paiement
 -- table reference : vraiement creer une autre table pour stocker les modes de paiement
--- ETAPE 7
+-- ETAPE 8
+select
+    ig.libelle,
+    qteIngredient.conso
+from
+    ingredient as ig
+    join (
+        SELECT
+            ip.id_ingredient,
+            sum(ip.quantite * cp.quantite) as conso
+        from
+            ingredient_plat as ip
+            join commande_plat as cp on ip.id_plat = cp.id_plat
+            join commande as c on c.id_commande = cp.id_commande
+        WHERE
+            c.daty = '2026-10-12'
+        GROUP BY
+            ip.id_ingredient
+    ) as qteIngredient on qteIngredient.id_ingredient = ig.id_ingredient;
+
+-- la colonne ingredients VARCHAR(500) contenant « riz, zébu, brèdes » n'est pas conseille car on ne peut pas traite les ingredient un par un (unite,stock)
