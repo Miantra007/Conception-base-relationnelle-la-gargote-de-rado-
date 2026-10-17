@@ -122,3 +122,24 @@ from
     ) as qteIngredient on qteIngredient.id_ingredient = ig.id_ingredient;
 
 -- la colonne ingredients VARCHAR(500) contenant « riz, zébu, brèdes » n'est pas conseille car on ne peut pas traite les ingredient un par un (unite,stock)
+-- ETAPE 9
+select
+    m.id_menu,
+    m.prix as prix,
+    result.prix_carte,
+    (result.prix_carte - prix) as economie
+from
+    menu as m
+    join (
+        select
+            cm.id_menu,
+            sum(p.prix) as prix_carte
+        from
+            composition_menu as cm
+            join plat as p on p.id_plat = cm.id_plat
+        GROUP BY
+            cm.id_menu
+    ) as result on m.id_menu = result.id_menu;
+
+-- utile si un menu est une formule ou une composition de plusieurs plats.
+-- contrainte : CHECK (<>)
